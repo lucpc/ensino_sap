@@ -1,0 +1,66 @@
+feedback_types:
+  - name: "progresso"
+    description: "Informa o progresso geral do aluno no curso."
+    message: "Você concluiu {percentual}% do curso de SAP FI-CA. Continue assim!"
+
+  - name: "foco_topico"
+    description: "Sugere foco em um tópico específico com baixo desempenho."
+    message: "Identificamos que você precisa revisar o tópico '{topico}'. Reforce seus conhecimentos aqui."
+
+  - name: "parabens_topico"
+    description: "Parabeniza o aluno pelo bom desempenho em um tópico."
+    message: "Parabéns! Você está dominando o tópico '{topico}'. Ótimo trabalho!"
+
+  - name: "revisao_geral"
+    description: "Sugere uma revisão geral do curso."
+    message: "Recomendamos uma revisão geral dos conceitos para consolidar seu aprendizado."
+
+  - name: "incentivo_continuar"
+    description: "Incentiva o aluno a continuar o curso."
+    message: "Não desista! O aprendizado de SAP FI-CA é fundamental para sua carreira."
+
+feedback_rules:
+  - name: "Progresso geral do curso"
+    condition:
+      type: "greater_than"
+      left: "progresso_geral" # Calcular progresso geral com base nos tópicos
+      right: 10.0
+    action:
+      feedback_progresso: 1
+    description: "Fornece feedback de progresso geral a cada 10% do curso concluído."
+
+  - name: "Foco em tópico com baixo desempenho"
+    condition:
+      type: "less_than"
+      left: "desempenho[topico].exercicios_acertados / desempenho[topico].exercicios_feitos * 100"
+      right: 60.0
+    action:
+      feedback_foco_topico[topico]: 1
+    description: "Sugere foco em um tópico se o desempenho for inferior a 60%."
+
+  - name: "Parabéns por bom desempenho em tópico"
+    condition:
+      type: "greater_than"
+      left: "desempenho[topico].exercicios_acertados / desempenho[topico].exercicios_feitos * 100"
+      right: 80.0
+    action:
+      feedback_parabens_topico[topico]: 1
+    description: "Parabeniza o aluno se o desempenho em um tópico for superior a 80%."
+
+  - name: "Revisão geral após concluir 80% do curso"
+    condition:
+      type: "greater_than"
+      left: "progresso_geral"
+      right: 80.0
+    action:
+      feedback_revisao_geral: 1
+    description: "Sugere revisão geral após concluir 80% do curso."
+
+  - name: "Incentivo para continuar o curso"
+    condition:
+      type: "less_than"
+      left: "progresso_geral"
+      right: 5.0
+    action:
+      feedback_incentivo_continuar: 1
+    description: "Incentiva o aluno a continuar se o progresso for muito baixo."
