@@ -1,0 +1,194 @@
+learner:
+  description: "Perfil do aluno e dados de desempenho no aprendizado de SAP FI-CA"
+  type: dict
+  properties:
+    id:
+      type: string
+      description: "Identificador único do aluno"
+      example: "aluno_001"
+    progresso:
+      type: dict
+      description: "Progresso do aluno nos tópicos"
+      properties:
+        "Configurações Iniciais":
+          type: object
+          properties:
+            "Configurações Básicas":
+              type: array
+              items:
+                type: string
+                enum: ["Moedas e Taxas de Câmbio", "Organização Empresarial", "Períodos Contábeis"]
+            "Configurações Específicas FI-CA":
+              type: array
+              items:
+                type: string
+                enum: ["Tipos de Documento", "Chaves de Lançamento", "Perfis de Documento"]
+        "Dados Mestres":
+          type: object
+          properties:
+            "Parceiro de Negócios (Business Partner)":
+              type: array
+              items:
+                type: string
+                enum: ["Criação e Manutenção de Parceiros", "Funções do Parceiro", "Dados Bancários"]
+            "Contratos":
+              type: array
+              items:
+                type: string
+                enum: ["Criação e Manutenção de Contratos", "Tipos de Contrato", "Condições de Pagamento"]
+        "Arrecadação":
+          type: object
+          properties:
+            "Entrada de Pagamentos":
+              type: array
+              items:
+                type: string
+                enum: ["Lançamento Manual de Pagamentos", "Processamento de Arquivos de Retorno Bancário", "Estorno de Pagamentos"]
+            "Compensação":
+              type: array
+              items:
+                type: string
+                enum: ["Compensação Automática", "Compensação Manual", "Tratamento de Diferenças de Pagamento"]
+        "Cobrança":
+          type: object
+          properties:
+            "Processos de Cobrança":
+              type: array
+              items:
+                type: string
+                enum: ["Cartas de Cobrança", "Níveis de Cobrança", "Juros e Multas"]
+            "Acordos de Pagamento":
+              type: array
+              items:
+                type: string
+                enum: ["Criação e Manutenção de Acordos", "Monitoramento de Acordos"]
+            "Execução de Cobrança":
+              type: array
+              items:
+                type: string
+                enum: ["Bloqueio de Serviços", "Encaminhamento para Assessoria Jurídica"]
+        "Contabilidade":
+          type: object
+          properties:
+            "Regras de Contabilização":
+              type: array
+              items:
+                type: string
+                enum: ["Determinação de Contas", "Configuração de Lançamentos Automáticos", "Chaves de Reconciliação"]
+            "Transferências":
+              type: array
+              items:
+                type: string
+                enum: ["Transferência de Lançamentos", "Transferência de Saldos"]
+            "Centros de Lucro e Custo":
+              type: array
+              items:
+                type: string
+                enum: ["Atribuição de Lançamentos a Centros de Lucro/Custo", "Relatórios de Centros de Lucro/Custo"]
+        "Relatórios":
+          type: object
+          properties:
+            "Relatórios Padrão FI-CA":
+              type: array
+              items:
+                type: string
+                enum: ["Saldos de Contas", "Extrato de Conta", "Histórico de Pagamentos"]
+            "Relatórios Personalizados":
+              type: array
+              items:
+                type: string
+                enum: ["Criação de Relatórios com ALV", "Utilização de Queries"]
+    desempenho:
+      type: dict
+      description: "Métricas de desempenho por tópico"
+      properties:
+        "Configurações Iniciais":
+          type: dict
+          properties:
+            total_aulas:
+              type: integer
+              description: "Total de aulas assistidas"
+            aulas_concluidas:
+              type: integer
+              description: "Aulas concluídas"
+            exercicios_feitos:
+              type: integer
+              description: "Exercícios feitos"
+            exercicios_acertados:
+              type: integer
+              description: "Exercícios acertados"
+        "Dados Mestres":
+          type: dict
+          properties:
+            total_aulas:
+              type: integer
+              description: "Total de aulas assistidas"
+            aulas_concluidas:
+              type: integer
+              description: "Aulas concluídas"
+            exercicios_feitos:
+              type: integer
+              description: "Exercícios feitos"
+            exercicios_acertados:
+              type: integer
+              description: "Exercícios acertados"
+        "Arrecadação":
+          type: dict
+          properties:
+            total_aulas:
+              type: integer
+              description: "Total de aulas assistidas"
+            aulas_concluidas:
+              type: integer
+              description: "Aulas concluídas"
+            exercicios_feitos:
+              type: integer
+              description: "Exercícios feitos"
+            exercicios_acertados:
+              type: integer
+              description: "Exercícios acertados"
+        "Cobrança":
+          type: dict
+          properties:
+            total_aulas:
+              type: integer
+              description: "Total de aulas assistidas"
+            aulas_concluidas:
+              type: integer
+              description: "Aulas concluídas"
+            exercicios_feitos:
+              type: integer
+              description: "Exercícios feitos"
+            exercicios_acertados:
+              type: integer
+              description: "Exercícios acertados"
+        "Contabilidade":
+          type: dict
+          properties:
+            total_aulas:
+              type: integer
+              description: "Total de aulas assistidas"
+            aulas_concluidas:
+              type: integer
+              description: "Aulas concluídas"
+            exercicios_feitos:
+              type: integer
+              description: "Exercícios feitos"
+            exercicios_acertados:
+              type: integer
+              description: "Exercícios acertados"
+        "Relatórios":
+          type: dict
+          properties:
+            total_aulas:
+              type: integer
+              description: "Total de aulas assistidas"
+            aulas_concluidas:
+              type: integer
+              description: "Aulas concluídas"
+            exercicios_feitos:
+              type: integer
+              description: "Exercícios feitos"
+            exercicios_acertados:
+              type: integer
+              description: "Exercícios acertados"
